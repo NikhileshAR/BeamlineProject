@@ -1,0 +1,3 @@
+/home/nikhilesh/Geant4Sim/build/CMakeFiles/scattering.dir
+/home/nikhilesh/Geant4Sim/build/CMakeFiles/edit_cache.dir
+/home/nikhilesh/Geant4Sim/build/CMakeFiles/rebuild_cache.dir
