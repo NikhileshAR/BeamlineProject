@@ -262,6 +262,7 @@ CMakeFiles/scattering.dir/PrimaryGenerator.cc.o: \
  /home/nikhilesh/geant4-install/include/Geant4/G4AllocatorPool.hh \
  /home/nikhilesh/geant4-install/include/Geant4/G4PrimaryParticle.hh \
  /home/nikhilesh/geant4-install/include/Geant4/G4ParticleMomentum.hh \
+ /home/nikhilesh/geant4-install/include/Geant4/globals.hh \
  /home/nikhilesh/geant4-install/include/Geant4/G4ParticleTable.hh \
  /home/nikhilesh/geant4-install/include/Geant4/G4ParticleTableIterator.hh \
  /home/nikhilesh/geant4-install/include/Geant4/G4ParticleTable.icc \

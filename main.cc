@@ -16,6 +16,22 @@ using namespace CLHEP;
 int main()
 {
     // ==============================
+    // Choose particle type
+    // ==============================
+
+    std::string particleChoice;
+    std::cout << "Choose particle (e- or mu-): ";
+    std::cin >> particleChoice;
+
+    // ==============================
+    // Choose beam energy
+    // ==============================
+
+    G4double energyMeV;
+    std::cout << "Enter beam energy (MeV): ";
+    std::cin >> energyMeV;
+
+    // ==============================
     // Ask for target thickness
     // ==============================
 
@@ -25,7 +41,6 @@ int main()
 
     auto alMat = G4NistManager::Instance()->FindOrBuildMaterial("G4_Al");
     G4double X0 = alMat->GetRadlen();
-
     G4double targetThickness = thicknessFraction * X0;
 
     std::cout << "Target thickness = "
@@ -41,11 +56,9 @@ int main()
 
     G4double thresholdRad = thresholdDeg * deg;
 
-    // ==============================
-    // Number of events
-    // ==============================
-
-    G4int nEvents = 10000;
+    G4int nEvents;
+    std::cout << "Enter number of events: ";
+    std::cin >> nEvents;
 
     // ==============================
     // Analysis Manager
@@ -64,8 +77,8 @@ int main()
         200, 0, 60);
 
     analysisManager->CreateNtuple("scattering", "Scattering Data");
-    analysisManager->CreateNtupleDColumn("theta");   // Column 0
-    analysisManager->CreateNtupleDColumn("energy");  // Column 1
+    analysisManager->CreateNtupleDColumn("theta");
+    analysisManager->CreateNtupleDColumn("energy");
     analysisManager->FinishNtuple();
 
     analysisManager->OpenFile("output.root");
@@ -83,22 +96,18 @@ int main()
         new PhysicsList());
 
     runManager->SetUserAction(
-        new PrimaryGenerator());
+        new PrimaryGenerator(particleChoice, energyMeV*MeV));
 
     auto steppingAction =
         new SteppingAction(thresholdRad);
 
     runManager->SetUserAction(steppingAction);
 
-    // ==============================
-    // Run Simulation
-    // ==============================
-
     runManager->Initialize();
     runManager->BeamOn(nEvents);
 
     // ==============================
-    // Print Large Angle Results
+    // Print Results
     // ==============================
 
     G4int largeCount =
@@ -113,16 +122,8 @@ int main()
               << (double)largeCount / nEvents << std::endl;
     std::cout << "================================\n" << std::endl;
 
-    // ==============================
-    // Normalize histograms
-    // ==============================
-
     analysisManager->ScaleH1(0, 1.0/nEvents);
     analysisManager->ScaleH1(1, 1.0/nEvents);
-
-    // ==============================
-    // Save Output
-    // ==============================
 
     analysisManager->Write();
     analysisManager->CloseFile();
