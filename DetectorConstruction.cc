@@ -21,5 +21,11 @@ G4VPhysicalVolume* DetectorConstruction::Construct() {
     auto targetLogic = new G4LogicalVolume(targetSolid, alMat, "TargetLogic");
     new G4PVPlacement(0, G4ThreeVector(0,0,0), targetLogic, "TargetPhys", worldLogic, false, 0);
 
+    auto screenSolid = new G4Box("Screen", 20*cm, 20*cm, 0.1*mm);
+    auto screenLogic = new G4LogicalVolume(screenSolid, worldMat, "ScreenLogic");
+    new G4PVPlacement(0, G4ThreeVector(0,0,10*cm),
+                      screenLogic, "ScreenPhys",
+                      worldLogic, false, 0);
+
     return worldPhys;
 }

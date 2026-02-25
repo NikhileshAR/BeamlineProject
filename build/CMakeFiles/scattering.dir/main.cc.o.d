@@ -581,6 +581,4 @@ CMakeFiles/scattering.dir/main.cc.o: /home/nikhilesh/Geant4Sim/main.cc \
  /home/nikhilesh/geant4-install/include/Geant4/G4MCCIndexConversionTable.hh \
  /home/nikhilesh/Geant4Sim/SteppingAction.hh \
  /home/nikhilesh/geant4-install/include/Geant4/G4UserSteppingAction.hh \
- /home/nikhilesh/geant4-install/include/Geant4/G4Step.hh \
- /home/nikhilesh/geant4-install/include/Geant4/G4SystemOfUnits.hh \
- /home/nikhilesh/geant4-install/include/Geant4/G4PhysicalConstants.hh
+ /home/nikhilesh/geant4-install/include/Geant4/G4SystemOfUnits.hh
